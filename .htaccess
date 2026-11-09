@@ -1,0 +1,11 @@
+# Cadangan untuk shared hosting yang document root-nya tidak bisa diarahkan ke public/.
+# Jika document root SUDAH ke public/, file ini tidak dipakai.
+Options -Indexes
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(app|storage|database|routes|resources|docs|_reference|node_modules|scripts)(/|$) - [F,L]
+    RewriteRule ^\.env - [F,L]
+    RewriteRule ^(composer\.|package|tailwind)[^/]* - [F,L]
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

@@ -1,0 +1,27 @@
+{
+  "name": "wedding-invitation-ayu-kevin",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Website undangan Ayu & Kevin (PHP Native). Node hanya untuk kompilasi Tailwind dan penyalinan font.",
+  "scripts": {
+    "fonts": "node scripts/copy-fonts.js",
+    "build:admin": "tailwindcss -c tailwind.admin.config.js -i resources/css/admin.css -o public/assets/css/admin.css --minify",
+    "build:desktop": "tailwindcss -c tailwind.desktop.config.js -i resources/css/invitation-desktop.css -o public/assets/css/invitation-desktop.css --minify",
+    "build:mobile": "tailwindcss -c tailwind.mobile.config.js -i resources/css/invitation-mobile.css -o public/assets/css/invitation-mobile.css --minify",
+    "build": "npm run build:admin && npm run build:desktop && npm run build:mobile",
+    "watch": "concurrently -k -n admin,desktop,mobile \"npm:watch:admin\" \"npm:watch:desktop\" \"npm:watch:mobile\"",
+    "watch:admin": "tailwindcss -c tailwind.admin.config.js -i resources/css/admin.css -o public/assets/css/admin.css --watch",
+    "watch:desktop": "tailwindcss -c tailwind.desktop.config.js -i resources/css/invitation-desktop.css -o public/assets/css/invitation-desktop.css --watch",
+    "watch:mobile": "tailwindcss -c tailwind.mobile.config.js -i resources/css/invitation-mobile.css -o public/assets/css/invitation-mobile.css --watch"
+  },
+  "devDependencies": {
+    "@fontsource/allura": "^5.0.0",
+    "@fontsource/cormorant-garamond": "^5.0.0",
+    "@fontsource/dm-serif-display": "^5.0.0",
+    "@fontsource/fraunces": "^5.0.0",
+    "@fontsource/pinyon-script": "^5.0.0",
+    "@fontsource/playfair-display": "^5.0.0",
+    "concurrently": "^8.2.2",
+    "tailwindcss": "3.4.17"
+  }
+}

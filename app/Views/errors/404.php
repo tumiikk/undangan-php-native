@@ -1,0 +1,2 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tidak ditemukan</title><link rel="stylesheet" href="/assets/css/admin.css"></head>
+<body class="flex min-h-screen items-center justify-center bg-navy-bg p-6"><main class="card max-w-md text-center"><h1 class="font-script text-5xl text-navy-deep">404</h1><p class="mt-2">Halaman yang Anda cari tidak ditemukan.</p><p class="mt-5"><a class="btn-primary" href="/admin/dashboard">Kembali ke Dashboard</a></p></main></body></html>

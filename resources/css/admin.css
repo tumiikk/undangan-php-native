@@ -1,0 +1,116 @@
+/* Dashboard admin. Komponen mengikuti docs/03-design-system.md. Build: npm run build:admin */
+@import './fonts.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-cream font-body text-[15px] leading-relaxed text-navy-ink antialiased; }
+  h1, h2, h3 { @apply font-display font-semibold text-navy-deep; }
+  :focus-visible { @apply outline-none ring-2 ring-gold ring-offset-2 ring-offset-cream; }
+  ::selection { background: #E9DDBF; color: #16244D; }
+}
+
+@layer components {
+  /* ---------- Tombol ---------- */
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2 px-5 py-2.5 font-label text-[13px] font-semibold uppercase tracking-[.12em]
+           transition duration-200 ease-soft disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  /* Utama: kotak krim berbingkai emas ganda (gaya "BUKA UNDANGAN") */
+  .btn-primary { @apply btn bg-paper-soft text-navy-ink shadow-gold hover:bg-white hover:shadow-[inset_0_0_0_1px_#C5AD7A,inset_0_0_0_4px_#FFFFFF,inset_0_0_0_5px_#C5AD7A]; }
+  /* Sekunder: garis emas tipis, latar transparan */
+  .btn-secondary { @apply btn rounded-field border border-gold bg-transparent text-navy-ink hover:bg-gold-soft/50; }
+  /* Navy (gaya tombol Login mockup, ornamen ◆) */
+  .btn-navy { @apply btn bg-navy-bg text-cream-warm shadow-[inset_0_0_0_1px_#C5AD7A66] hover:bg-navy-night; }
+  .btn-navy::before, .btn-navy::after { content: '\25C6'; @apply text-[9px] text-gold; }
+  /* Aksi bahaya */
+  .btn-danger { @apply btn rounded-field bg-status-tidak text-white hover:bg-[#6f2530]; }
+  .btn-ghost { @apply btn normal-case tracking-normal text-navy-ink hover:bg-gold-soft/40 rounded-field; }
+  .btn-sm { @apply px-3.5 py-1.5 text-[11.5px]; }
+  .btn-block { @apply w-full; }
+
+  /* ---------- Field (gaya field mockup RSVP/Login) ---------- */
+  .field-label { @apply mb-1.5 block font-form text-[15px] text-navy-deep; }
+  .field-help { @apply mt-1.5 text-[12.5px] text-navy-ink/70; }
+  .field-error { @apply mt-1.5 text-[12.5px] font-semibold text-status-tidak; }
+  .field {
+    @apply block w-full rounded-field border-2 border-field-line/80 bg-field-fill px-4 py-2.5 font-label text-[15px] text-navy-deep
+           placeholder:text-navy-ink/45 shadow-[inset_0_1px_2px_rgba(22,36,77,.06)] transition focus:border-navy-bg focus:outline-none focus:ring-2 focus:ring-gold/60;
+  }
+  textarea.field { @apply min-h-[7rem] resize-y; }
+  select.field { @apply appearance-none bg-no-repeat pr-10; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%232F486D' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>"); background-position: right 14px center; }
+  .field-invalid { @apply border-status-tidak; }
+  /* Field login: krim, bingkai tipis emas-muda */
+  .field-soft { @apply rounded-field border border-gold/50 bg-paper-soft/90 shadow-[0_0_0_3px_rgba(241,228,211,.7)] focus:border-gold focus:ring-gold/50; }
+
+  /* ---------- Kartu ---------- */
+  .card { @apply rounded-card border border-gold/40 bg-paper-white/90 p-5 shadow-card sm:p-6; }
+  .card-cream { @apply rounded-card border border-gold/40 bg-cream-warm/70 p-5 sm:p-6; }
+  .card-title { @apply font-display text-xl font-semibold text-navy-deep; }
+  .stat-card { @apply card relative overflow-hidden; }
+  .stat-card::after { content: ''; @apply absolute -right-5 -top-5 h-16 w-16 rounded-full bg-gold-soft/60; }
+  .stat-value { @apply font-serif text-[2rem] font-semibold leading-none text-navy-deep; }
+  .stat-label { @apply mt-2 text-[12.5px] font-semibold uppercase tracking-[.1em] text-navy-ink/75; }
+
+  /* ---------- Badge status ---------- */
+  .badge { @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-label text-[12px] font-semibold; }
+  .badge::before { content: ''; @apply h-1.5 w-1.5 rounded-full bg-current; }
+  .badge-hadir { @apply badge bg-status-hadir-bg text-status-hadir; }
+  .badge-tidak { @apply badge bg-status-tidak-bg text-status-tidak; }
+  .badge-belum { @apply badge bg-status-belum-bg text-status-belum; }
+  .badge-info { @apply badge bg-cream-warm text-navy-ink; }
+
+  /* ---------- Tabel ---------- */
+  .table-wrap { @apply overflow-x-auto rounded-card border border-gold/40 bg-paper-white/90 shadow-soft; }
+  .table { @apply w-full min-w-[34rem] border-collapse text-left text-[14.5px]; }
+  .table thead th { @apply border-b border-gold/50 bg-cream-warm/70 px-4 py-3 font-label text-[11.5px] font-semibold uppercase tracking-[.12em] text-navy-ink; }
+  .table tbody td { @apply border-b border-cream-warm px-4 py-3 align-middle text-navy-deep; }
+  .table tbody tr:last-child td { @apply border-b-0; }
+  .table tbody tr:hover { @apply bg-cream/60; }
+
+  /* ---------- Tab ---------- */
+  .tabs { @apply flex flex-wrap gap-1 border-b border-gold/50; }
+  .tab { @apply -mb-px rounded-t-field border border-transparent px-4 py-2 font-label text-[13px] font-semibold text-navy-ink/75 transition hover:text-navy-deep; }
+  .tab[aria-selected='true'] { @apply border-gold/60 border-b-paper-white bg-paper-white text-navy-deep; }
+
+  /* ---------- Modal ---------- */
+  .modal-backdrop { @apply fixed inset-0 z-[70] flex items-center justify-center bg-navy-deep/60 p-4 backdrop-blur-[2px]; }
+  .modal-backdrop[hidden] { display: none; }
+  .modal { @apply w-full max-w-md rounded-card border border-gold/60 bg-paper-soft p-6 shadow-pop; }
+
+  /* ---------- Alert & toast ---------- */
+  .alert { @apply flex items-start gap-3 rounded-field border px-4 py-3 text-[14px]; }
+  .alert-info { @apply alert border-field-line bg-[#E8EFF7] text-navy-deep; }
+  .alert-success { @apply alert border-status-hadir/40 bg-status-hadir-bg text-status-hadir; }
+  .alert-warning { @apply alert border-gold bg-status-belum-bg text-status-belum; }
+  .alert-error { @apply alert border-status-tidak/40 bg-status-tidak-bg text-status-tidak; }
+  .toast-host { @apply pointer-events-none fixed bottom-4 right-4 z-[80] flex w-[min(22rem,calc(100vw-2rem))] flex-col gap-2; }
+  .toast { @apply pointer-events-auto alert shadow-pop; animation: toast-in .25s ease-out; }
+  @keyframes toast-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  /* ---------- Divider berornamen ---------- */
+  .divider { @apply flex items-center gap-3 text-gold; }
+  .divider::before, .divider::after { content: ''; @apply h-px flex-1 bg-gradient-to-r from-transparent via-gold to-transparent; }
+  .divider-diamond { @apply block h-2 w-2 rotate-45 bg-gold; }
+
+  /* ---------- Pagination ---------- */
+  .page-btn { @apply inline-flex h-9 min-w-[2.25rem] items-center justify-center rounded-field border border-gold/40 bg-paper-white px-2 font-label text-[13px] font-semibold text-navy-ink transition hover:bg-gold-soft/50; }
+  .page-btn[aria-current='page'] { @apply border-navy-bg bg-navy-bg text-cream-warm; }
+  .page-btn[aria-disabled='true'] { @apply pointer-events-none opacity-40; }
+
+  /* ---------- Sidebar ---------- */
+  .nav-link { @apply flex items-center gap-3 rounded-field px-3 py-2.5 font-label text-[14px] text-cream-warm/85 transition hover:bg-white/10 hover:text-white; }
+  .nav-link[aria-current='page'] { @apply bg-cream/95 font-semibold text-navy-deep shadow-soft; }
+  .nav-link[aria-disabled='true'] { @apply cursor-not-allowed opacity-50 hover:bg-transparent hover:text-cream-warm/85; }
+  .nav-sub { @apply ml-5 border-l border-gold/40 pl-2; }
+
+  /* ---------- Login ---------- */
+  .login-bg { @apply min-h-screen bg-navy-bg; }
+  .login-paper { @apply relative overflow-hidden bg-cover bg-center shadow-pop; background-color: #F5F3EE; background-image: url('/assets/images/ui/login-panel.png'); }
+  .login-title { @apply font-script text-navy-deep; text-shadow: 0 0 .5px rgba(22,36,77,.4); }
+  .login-btn { @apply relative flex w-full items-center justify-center gap-3 border border-gold/70 bg-navy-bg px-6 py-3 font-label text-[18px] tracking-wide text-cream-warm transition hover:bg-navy-night shadow-[inset_0_0_0_3px_#2F486D,inset_0_0_0_4px_#C5AD7A99]; }
+  .login-btn::before, .login-btn::after { content: '\25C6'; @apply text-[10px] text-gold; }
+  .scrollbar-thin { scrollbar-width: thin; scrollbar-color: #C5AD7A transparent; }
+}

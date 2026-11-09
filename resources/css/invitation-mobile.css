@@ -1,0 +1,10 @@
+/* Landing undangan — MOBILE. Hanya token/dasar (Tahap 2). Section dikerjakan di Tahap 5. */
+@import './fonts.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { @apply bg-cream font-display text-navy-ink antialiased; }
+}
